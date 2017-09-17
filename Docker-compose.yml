@@ -1,0 +1,25 @@
+version: '2'
+services:
+  lcm:
+    build: ./lcm
+    container_name: lcm
+    volumes:
+      - /app/node/logs
+      - /var/log/nginx
+      - ./nginxlogs:/var/log/nginx
+      - ./applogs:/app/node/logs
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    entrypoint: "/usr/sbin/nginx -c /etc/nginx/nginx.conf -g \"daemon off;\""
+    links:
+      - node
+    ports:
+      - 8080:80
+    volumes_from:
+      - lcm
+  node:
+    build: ./node
+    container_name: node
+    volumes_from:
+      - lcm

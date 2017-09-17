@@ -1,0 +1,12 @@
+/app/node/logs/*log {
+    su root root
+    daily
+    rotate 10
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    postrotate
+        kill -SIGINT 1
+    endscript
+}
