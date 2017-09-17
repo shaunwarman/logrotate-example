@@ -8,6 +8,7 @@ class Logger {
   }
 
   log(log) {
+    console.log(log);
     this.writeStream.write(`${log} \n`);
   }
 

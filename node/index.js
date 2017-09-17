@@ -16,11 +16,10 @@ app.get('/', (req, res) => {
 });
 
 app.listen(8000, (err) => {
-  console.log('App is listening on port 8000');
+  logger.log('App is listening on port 8000');
 });
 
 process.on('uncaughtException', (err) => {
-  console.log(`${Date.now()} - Error: ${JSON.stringify(err)}`);
   setTimeout(() => {
     logger.log(`${Date.now()} - Error: ${JSON.stringify(err)}`);
     process.exit(1);
@@ -28,6 +27,6 @@ process.on('uncaughtException', (err) => {
 });
 
 process.on('SIGINT', () => {
-  console.log('SIGINT sent to pid 1');
+  logger.log('SIGINT sent to pid 1');
   logger.rotate();
 });
