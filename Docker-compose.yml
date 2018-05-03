@@ -12,6 +12,9 @@ services:
     build: ./nginx
     container_name: nginx
     entrypoint: "/usr/sbin/nginx -c /etc/nginx/nginx.conf -g \"daemon off;\""
+    depends_on:
+      - lcm
+      - node
     links:
       - node
     ports:

@@ -8,6 +8,7 @@ COPY . .
 COPY app.logrotate /etc/logrotate.d/app.logrotate
 
 RUN apk update && apk add \
-    logrotate
+    logrotate \
+    && npm install
 
 CMD ["node", "index.js"]
